@@ -1,20 +1,67 @@
-import React, { Component } from 'react'
-import './todoAPP.css'
+  import React, { Component } from 'react'
+  import './todoAPP.css'
 
-export default class todoAPP extends Component {
-  render() {
-    return (
-      <div className='todo-container'>
+  export default class todoAPP extends Component {
+    state = {
+      input: '',
+      arr :[]
+    }
 
-        <h1>Todo APP</h1>
-       <form action="">
-       <input type="text" placeholder='Enter you nane'/>
-       </form>
-        
-       <ul class="todo-list">
-                <li>item</li>
-        </ul>
-      </div>
-    )
+    handleChange = event=>{
+      this.setState({
+        input: event.target.value
+      });
+      console.log(this.state.input);
+
+
+    };
+    dataFetching = (event)=>{
+      event.preventDefault()
+      const {input} = this.state;
+      this.setState({
+        arr: [...this.state.arr,input],
+        input:''
+      })
+    }
+    deleteData = (key) =>{
+       
+      this.setState({
+        arr :this.state.arr.filter((data,index)=>index !== key)
+        })
+    }
+    updateData = ()=>{
+      this.setState({
+        input:this.state.arr[0]
+      })
+    }
+
+    render() {
+      const {input,arr} = this.state;
+      console.log(arr);
+
+      return (
+        <div className='todo-container'>
+
+          
+            <h1>Todo APP</h1>
+
+            <form onSubmit={this.dataFetching}>
+                <input type="text" value={input} onChange={this.handleChange} placeholder='Enter you nane'/>
+            </form>
+
+          <ul className="todo-list">
+            {arr.map((item,index)=>(
+            
+                  <li key={index}>{item}<i onClick={()=>this.deleteData(index)} className="fa-solid fa-trash">   <i onClick={this.updateData} class="fa-solid fa-pen-to-square"></i>
+                  </i></li >
+
+            ))}
+            
+              
+          </ul>       
+
+
+        </div>
+      )
+    }
   }
-}
