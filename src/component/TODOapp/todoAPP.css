@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    background: rgb(255, 255, 255); 
+  }
+  
+  .todo-container {
+    background: rgb(0, 0, 0); 
+    position: absolute;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 30px;
+    text-align: center;
+    color: white;
+    padding: 10px;
+  }
+  
+  input {
+    width: calc(100% - 30px);
+    height: 25px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    background: rgba(0, 0, 0, 0.1); 
+    color: rgb(255, 255, 255); 
+  }
+  
+  ul {
+    text-align: left;
+    padding: 10px;
+  }
+  
+  ul li {
+    background-color: white;
+    list-style: none;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+
