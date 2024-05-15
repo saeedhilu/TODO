@@ -35,7 +35,6 @@ ul {
 
 ul li {
     display: flex;
-    align-items: center;
     justify-content: space-between;
     background-color: #f9f9f9; 
     list-style: none;
@@ -45,22 +44,21 @@ ul li {
     border-radius: 10px;
     cursor: pointer;
 }
-
-ul li i {
-    color: #999;
-    cursor: pointer;
-    padding: 5px; /* Add padding around the icons */
-}
-
 /* Add hover effect to icons */
-ul li i:hover {
-    transform: scale(1.1);
-}
 
-ul li .delete-icon:hover {
+  
+  /* Style the delete icon */
+  #icon-delete:hover {
     color: rgb(255, 6, 6);
-}
-
-ul li .edit-icon:hover {
+    transform: scale(1.1);
+    
+  
+  }
+  
+  /* Style the edit icon */
+  #icon-edit:hover {
     color: rgb(7, 165, 20);
-}
+   
+    transform: scale(1.1);
+  }
+  

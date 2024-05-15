@@ -49,11 +49,11 @@
                 <input type="text" value={input} onChange={this.handleChange} placeholder='Enter you nane'/>
             </form>
 
-          <ul className="todo-list">
+          <ul className="todo-list">  
             {arr.map((item,index)=>(
             
-                  <li key={index}>{item}<i onClick={()=>this.deleteData(index)} className="fa-solid fa-trash">   <i onClick={this.updateData} class="fa-solid fa-pen-to-square"></i>
-                  </i></li >
+                  <li key={index}>{item}<i id='icon-delete' onClick={()=>this.deleteData(index)} className="fa-solid fa-trash">   </i><i id='icon-edit' onClick={this.updateData} class="fa-solid fa-pen-to-square"></i>
+                  </li >
 
             ))}
             
