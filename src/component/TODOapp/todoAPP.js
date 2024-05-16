@@ -3,8 +3,8 @@ import './todoAPP.css';
 
 export default class TodoApp extends Component {
   state = {
-    newInput: '', // Separate input for adding new items
-    editInput: '', // Separate input for editing existing items
+    newInput: '', 
+    editInput: '', 
     arr: [],
     editingIndex: null,
     showmodal: false
@@ -68,20 +68,23 @@ export default class TodoApp extends Component {
 
         <form onSubmit={this.dataFetching}>
           <input
-            type="text"
-            name="newInput"
-            value={newInput}
-            onChange={this.handleChange}
-            placeholder="Enter your name"
-          />
+            
+              type="text"
+              name="newInput"
+              value={newInput}
+              onChange={this.handleChange}
+              placeholder="Enter your name"
+              
+            />
         </form>
 
         <ul className="todo-list">
           {arr.map((item, index) => (
             <li key={index}>
               {index === editingIndex && showmodal ? (
-                <div className="modal">
+                <>
                   <input
+                    id='in'
                     type="text"
                     name="editInput"
                     value={editInput}
@@ -89,7 +92,7 @@ export default class TodoApp extends Component {
                   />
                   <button onClick={this.handleCloseModal}>Cancel</button>
                   <button onClick={this.handleUpdateItem}>Update</button>
-                </div>
+                  </>
               ) : (
                 <>
                   {item}

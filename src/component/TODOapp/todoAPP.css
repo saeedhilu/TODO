@@ -29,11 +29,26 @@ form input{
     border: none;
     outline: none;
 }
+#in{
+    width: calc(100% - 30px);
+    height: 16px; 
+    font-size: 14px;
+    border: none;
+    outline: none;
+}
+    
 ul {
     text-align: left;
     padding: 0;
 }
-
+button{
+    background: #565555;
+    border-radius: 5px;
+    color: white;
+}
+button:hover{
+    background: rgb(37, 36, 36);
+}
 ul li {
     display: flex;
     justify-content: space-between;
@@ -57,3 +72,23 @@ ul li {
     transform: scale(1.1);
 }
 
+.modal button {
+    width: calc(50% - 5px); /* Adjusted width to have spacing between buttons */
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 5px; /* Added margin-right for spacing between buttons */
+    cursor: pointer;
+}
+
+.modal button.cancel-button {
+    background-color: #f44336; /* Red color for cancel button */
+    color: white;
+}
+
+.modal button.update-button {
+    background-color: #4caf50; /* Green color for update button */
+    color: white;
+}
