@@ -5,18 +5,20 @@ body {
 
 .todo-container {
     background: #333; 
-    position: absolute;
+    margin: auto;   
+    margin-top: 20px;
     width: 400px;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     border-radius: 20px;
     text-align: center;
     color: white;
     padding: 20px;
 }
 
-input {
+
+
+form input{
     width: calc(100% - 30px);
     height: 40px; 
     border-radius: 10px;
@@ -27,7 +29,6 @@ input {
     border: none;
     outline: none;
 }
-
 ul {
     text-align: left;
     padding: 0;

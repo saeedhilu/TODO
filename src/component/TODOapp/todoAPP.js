@@ -1,77 +1,116 @@
-  import React, { Component } from 'react'
-  import './todoAPP.css'
+import React, { Component } from 'react';
+import './todoAPP.css';
 
-  export default class todoAPP extends Component {
-    state = {
-      input: '',
-      arr :[]
-    }
+export default class TodoApp extends Component {
+  state = {
+    newInput: '', // Separate input for adding new items
+    editInput: '', // Separate input for editing existing items
+    arr: [],
+    editingIndex: null,
+    showmodal: false
+  };
 
-    handleChange = event=>{
-      this.setState({
-        input: event.target.value
-      });
-      console.log(this.state.input);
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
+  dataFetching = event => {
+    event.preventDefault();
+    const { newInput } = this.state;
 
-    };
-    dataFetching = (event)=>{
-      event.preventDefault()
-      const {input} = this.state;
-      this.setState({
-        arr: [...this.state.arr,input],
-        input:''
-      })
-    }
-    deleteData = (key) =>{
-      //  using splice method (but filter is the best method)
-      const allitem = this.state.arr
-      allitem.splice(key,1)
-      this.setState({
-        arr :allitem /*this.state.arr.filter((data,index)=>index !== key) */
-        })
-    }
-    updateData = (index,value)=>{
-      const input_value= this.state.arr[index]
-      const update_input = [...this.state.input]
-      update_input[index]=input_value 
-      console.log('this is updated datat',update_input);
-      this.setState({
-        input: update_input
-       
+    this.setState(prevState => ({
+      arr: [...prevState.arr, newInput],
+      newInput: ''
+    }));
+  };
 
-      })
-    }
+  deleteData = key => {
+    this.setState(prevState => ({
+      arr: prevState.arr.filter((data, index) => index !== key)
+    }));
+  };
 
-    render() {
-      const {input,arr} = this.state;
-      console.log(arr);
+  updateData = index => {
+    this.setState({
+      editingIndex: index,
+      showmodal: true,
+      editInput: this.state.arr[index] // Set editInput to the value of the item being edited
+    });
+  };
 
-      return (
-        <div className='todo-container'>
+  handleUpdateItem = () => {
+    const { arr, editingIndex, editInput } = this.state;
+    const newItems = [...arr];
+    newItems[editingIndex] = editInput;
 
-          
-            <h1>Todo APP</h1>
+    this.setState({
+      arr: newItems,
+      editingIndex: null,
+      showmodal: false
+    });
+  };
 
-            <form onSubmit={this.dataFetching}>
-                <input type="text" value={input} onChange={this.handleChange} placeholder='Enter you nane'/>
-            </form>
+  handleCloseModal = () => {
+    this.setState({
+      showmodal: false
+    });
+  };
 
-            <ul className="todo-list">
-              {arr.map((item,index)=>(
-                <li key={index}>
+  render() {
+    const { newInput, arr, editingIndex, editInput, showmodal } = this.state;
+
+    return (
+      <div className="todo-container">
+        <h1>Todo APP</h1>
+
+        <form onSubmit={this.dataFetching}>
+          <input
+            type="text"
+            name="newInput"
+            value={newInput}
+            onChange={this.handleChange}
+            placeholder="Enter your name"
+          />
+        </form>
+
+        <ul className="todo-list">
+          {arr.map((item, index) => (
+            <li key={index}>
+              {index === editingIndex && showmodal ? (
+                <div className="modal">
+                  <input
+                    type="text"
+                    name="editInput"
+                    value={editInput}
+                    onChange={this.handleChange}
+                  />
+                  <button onClick={this.handleCloseModal}>Cancel</button>
+                  <button onClick={this.handleUpdateItem}>Update</button>
+                </div>
+              ) : (
+                <>
                   {item}
                   <div className="icon">
-
-                    <i id="icon-delete" onClick={()=>this.deleteData(index)} className="fa-solid fa-trash"></i>
-                    <i id="icon-edit" onClick={()=>this.updateData(index)} className="fa-solid fa-pen-to-square"></i>
+                    <i
+                      id="icon-delete"
+                      onClick={() => this.deleteData(index)}
+                      className="fa-solid fa-trash"
+                    ></i>
+                    <i
+                      id="icon-edit"
+                      onClick={() => this.updateData(index)}
+                      className="fa-solid fa-pen-to-square"
+                    ></i>
                   </div>
-                </li>
-              ))}
-            </ul>  
-
-
-        </div>
-      )
-    }
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
   }
+}
