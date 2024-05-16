@@ -24,14 +24,22 @@
       })
     }
     deleteData = (key) =>{
-       
+      //  using splice method (but filter is the best method)
+      const allitem = this.state.arr
+      allitem.splice(key,1)
       this.setState({
-        arr :this.state.arr.filter((data,index)=>index !== key)
+        arr :allitem /*this.state.arr.filter((data,index)=>index !== key) */
         })
     }
-    updateData = ()=>{
+    updateData = (index,value)=>{
+      const input_value= this.state.arr[index]
+      const update_input = [...this.state.input]
+      update_input[index]=input_value 
+      console.log('this is updated datat',update_input);
       this.setState({
-        input:this.state.arr[0]
+        input: update_input
+       
+
       })
     }
 
@@ -49,16 +57,18 @@
                 <input type="text" value={input} onChange={this.handleChange} placeholder='Enter you nane'/>
             </form>
 
-          <ul className="todo-list">  
-            {arr.map((item,index)=>(
-            
-                  <li key={index}>{item}<i id='icon-delete' onClick={()=>this.deleteData(index)} className="fa-solid fa-trash">   </i><i id='icon-edit' onClick={this.updateData} class="fa-solid fa-pen-to-square"></i>
-                  </li >
+            <ul className="todo-list">
+              {arr.map((item,index)=>(
+                <li key={index}>
+                  {item}
+                  <div className="icon">
 
-            ))}
-            
-              
-          </ul>       
+                    <i id="icon-delete" onClick={()=>this.deleteData(index)} className="fa-solid fa-trash"></i>
+                    <i id="icon-edit" onClick={()=>this.updateData(index)} className="fa-solid fa-pen-to-square"></i>
+                  </div>
+                </li>
+              ))}
+            </ul>  
 
 
         </div>

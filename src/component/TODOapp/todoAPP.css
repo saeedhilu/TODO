@@ -44,21 +44,15 @@ ul li {
     border-radius: 10px;
     cursor: pointer;
 }
-/* Add hover effect to icons */
 
-  
-  /* Style the delete icon */
-  #icon-delete:hover {
+#icon-delete:hover {
     color: rgb(255, 6, 6);
     transform: scale(1.1);
     
-  
-  }
-  
-  /* Style the edit icon */
-  #icon-edit:hover {
+}
+
+#icon-edit:hover {
     color: rgb(7, 165, 20);
-   
     transform: scale(1.1);
-  }
-  
+}
+
