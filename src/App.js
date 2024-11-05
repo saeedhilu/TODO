@@ -1,13 +1,10 @@
-import React, { Component } from 'react'
-import TodoApp from './component/TODOapp/todoAPP'
+import React, { Component } from "react";
+import TodoApp from "./component/todoAPP";
 
-export default class App extends Component {
-  render() {
-    return (
-      <div>
-        <TodoApp />
-      
-      </div>
-    )
-  }
-}
+const App = () => (
+  <div>
+    <TodoApp />
+  </div>
+);
+
+export default TodoApp;

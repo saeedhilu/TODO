@@ -37,7 +37,7 @@ export default class TodoApp extends Component {
     this.setState({
       editingIndex: index,
       showmodal: true,
-      editInput: this.state.arr[index] // Set editInput to the value of the item being edited
+      editInput: this.state.arr[index] 
     });
   };
 
